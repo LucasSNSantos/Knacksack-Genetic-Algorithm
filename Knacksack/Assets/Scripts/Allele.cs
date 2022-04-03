@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Allele 
 {
-    public float Weight { get; set; }
-    public decimal Value { get; set; }
-    public bool OnBag { get; set; }
-
-
-
+    public float Weight;
+    public int ID;
+    public decimal Value;
+    public bool OnBag;
 }
