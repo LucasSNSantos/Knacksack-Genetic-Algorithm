@@ -8,11 +8,13 @@ public class GameObjectAllele : MonoBehaviour
     public Sprite mySprite;
     public string Name;
 
-    public Transform InitialPosition;
+    public Vector3 InitialPosition;
+    public Quaternion InitialRotation;
 
     private void Awake()
     {
-        InitialPosition = transform;
+        InitialPosition = transform.position;
+        InitialRotation = transform.rotation;
     }
 
     public Allele GetVanillaAllele()

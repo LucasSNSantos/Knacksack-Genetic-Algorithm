@@ -22,6 +22,7 @@ public class SpawnItems : MonoBehaviour
             {
                 var rigidbody = obje.GetComponent<Rigidbody2D>();
                 rigidbody.gravityScale = 1;
+                obje.gameObject.SetActive(true);
             } else
             {
                 obje.gameObject.SetActive(false);
@@ -34,8 +35,8 @@ public class SpawnItems : MonoBehaviour
         foreach(var obje in Objects)
         {
             obje.GetComponent<Rigidbody2D>().gravityScale = 0;
-            obje.transform.position = obje.InitialPosition.position;
-            obje.transform.rotation = obje.InitialPosition.rotation;
+            obje.transform.SetPositionAndRotation(obje.InitialPosition, obje.InitialRotation);
+            obje.gameObject.SetActive(false);
         }
     }
 }

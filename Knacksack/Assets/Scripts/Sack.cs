@@ -42,14 +42,20 @@ public class Sack : MonoBehaviour
 
         myButton.onClick.AddListener(() =>
         {
+            print(CurrentChromossome.ToString());
+
             if (!isOpen)
             {
                 UI.CloseAllExceptFor(ID);
                 Spawner.Spawn(CurrentChromossome.Alleles);
+                UI.GeracoesText.gameObject.SetActive(false);
+                isOpen = true;
             } else
             {
                 UI.OpenAll();
                 Spawner.RemoveFromScene();
+                UI.GeracoesText.gameObject.SetActive(true);
+                isOpen = false;
             }
         });
     }
@@ -58,7 +64,7 @@ public class Sack : MonoBehaviour
     {
         CurrentChromossome = chromossome;
         ID = CurrentChromossome.ID;
-        ResetStatus();
+        //ResetStatus();
 
         Text.text = $"Weight: {CurrentChromossome.TotalWeight()}\nValue: {CurrentChromossome.TotalValue()}\nFitness: {string.Format("{0:0.00}", CurrentChromossome.Fitness())}";
     }

@@ -26,6 +26,13 @@ public class Manager : MonoBehaviour
 
     public int Generations = 20;
 
+    private bool IsAutoOn = false;
+
+    public float StepTime = 1f;
+
+    private float CurrentTimer = 0f;
+
+    private Coroutine CurrentCoroutine;
     private AGState state;
 
     private (Chromosome father, Chromosome mother) Participants;
@@ -33,7 +40,7 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        MyD = new Darwin(Items.Select(x => x.GetVanillaAllele()).ToList());
+        MyD = new Darwin(Items.Select(x => x.GetVanillaAllele()).ToList(), Generations);
 
         print("POPULACAO INICIAL");
         foreach(var chromossome in MyD.Chromosomes)
@@ -83,6 +90,13 @@ public class Manager : MonoBehaviour
 
     public void EvolveOneGeneration()
     {
+        if (MyD.CurrentGeneration + 1 == MyD.MaxGenerations)
+        {
+            UI.GeracoesText.text = "O MAXIMO DE GERACOES FOI ALCANÇADO (" + MyD.MaxGenerations + ")";
+            IsAutoOn = false;
+            return;
+        }
+
         string prefix = "GERACAO " + (MyD.CurrentGeneration+1) + "/" + MyD.MaxGenerations;
 
         switch (state)
@@ -121,6 +135,14 @@ public class Manager : MonoBehaviour
                 break;
         }
 
+        int count = 0;
+        foreach (var chromossome in MyD.Chromosomes)
+        {
+            var sack = Sacks.ElementAt(count);
+            sack.SetChromossome(chromossome);
+            count++;
+        }
+
         UI.GeracoesText.text = prefix + " ESTADO " + Enum.GetName(typeof(AGState), state);
     }
 
@@ -147,7 +169,7 @@ public class Manager : MonoBehaviour
         var swapper = Sacks.FirstOrDefault(x => x.ID == weak.ID);
 
         swapper.ResetStatus();
-        swapper.SetChromossome(Descendent);
+        //swapper.SetChromossome(Descendent);
 
         UI.RemoveDescedent();
     }
@@ -169,24 +191,70 @@ public class Manager : MonoBehaviour
 
         sack.SetMutation(false);
 
-        sack.SetChromossome(mutate);
+        //sack.SetChromossome(mutate);
+        sack.ResetStatus();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && !IsAutoOn)
         {
-            EvolveOneGeneration();
+            Step();
+        }
 
-            print((int)state);
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            IsAutoOn = !IsAutoOn;
 
-            if (state == AGState.FimGeneration)
+            //if (IsAutoOn)
+            //{
+            //    CurrentCoroutine = StartCoroutine(StepCoroutine());
+            //} else
+            //{
+            //    if (CurrentCoroutine != null)
+            //    {
+            //        StopCoroutine(CurrentCoroutine);
+            //    }
+            //}
+        }
+
+        if (IsAutoOn)
+        {
+            CurrentTimer += Time.deltaTime;
+
+            if (CurrentTimer >= StepTime)
             {
-                state = AGState.KillWeak;
-            } else
-            {
-                state = (AGState)((int)state + 1);
+                Step();
+                CurrentTimer = 0;
             }
+        }
+    }
+
+    private IEnumerator StepCoroutine()
+    {
+        Step();
+
+        yield return new WaitForSecondsRealtime(StepTime);
+    
+        if (IsAutoOn)
+        {
+            StartCoroutine(StepCoroutine());
+        }
+    }
+
+    private void Step()
+    {
+        EvolveOneGeneration();
+
+        print((int)state);
+
+        if (state == AGState.FimGeneration)
+        {
+            state = AGState.KillWeak;
+        }
+        else
+        {
+            state = (AGState)((int)state + 1);
         }
     }
 

@@ -13,7 +13,7 @@ public class Darwin
 {
     public Chromosome[] Chromosomes;
     public static ESelection Selection;
-	public readonly static float MaxWeight = 50f;
+	public readonly static float MaxWeight = 30f;
     public const int Population = 10;
 	public float MutationTax = 0.02f;
     public int CurrentGeneration;
@@ -171,7 +171,7 @@ public class Darwin
 			index1 = random.Next(0, Population);
 		}
 
-		while (index1 == index2 && !Chromosomes[index2].IsChoosen && !Chromosomes[index1].Executed)
+		while (index1 == index2 && !Chromosomes[index2].IsChoosen && !Chromosomes[index2].Executed)
 		{
 			index2 = random.Next(0, Population);
 		}
