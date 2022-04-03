@@ -1,26 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEngine;
 
 public class Chromosome
 {
-    public static int Size = 10;
+    private static int _ID = 1;
+    public int ID;
+    public int Size => myDarwin.ObjectList.Count;
     public Allele[] Alleles;
     public bool IsChoosen;
-    public Chromosome()
+    public bool Executed;
+    public static System.Random random;
+
+    private Darwin myDarwin;
+
+    public Chromosome(Darwin myDarwin)
     {
+        ID = _ID;
+        
+        _ID++;
+
+        if (random == null)
+        {
+            random = new System.Random();
+        }
+
+        this.myDarwin = myDarwin;
         Alleles = new Allele[Size];
     }
 
-    // f(n) = 0.01 - 0.99
+    public Chromosome Randomize()
+    {
+        var objectList = myDarwin.ObjectList;
+        var totalWeight = 0.0f;
+        
+        for (int i = 0; i < Alleles.Length; i++)
+        {
+            Alleles[i] = objectList.ElementAt(i).Clone();
+
+            var randomNumber = random.Next(0, 10);
+            var onBag = randomNumber <= 4;
+
+            if (onBag && Alleles[i].Weight + totalWeight <= Darwin.MaxWeight)
+            {
+                Alleles[i].OnBag = true;
+                totalWeight += Alleles[i].Weight;
+            }
+        }
+
+        return this;
+    }
+
+    public float TotalWeight() => Alleles.Where(x => x.OnBag).Sum(x => x.Weight);
+
+    public decimal TotalValue() => Alleles.Where(x => x.OnBag).Sum(x => x.Value);
+
     public float Fitness()
     {
-        float TotalWeight = Alleles.Sum(x => x.Weight);
-        decimal TotalValue = Alleles.Sum(x => x.Value);
+        float TotalWeight = Alleles.Where(x => x.OnBag).Sum(x => x.Weight);
+        decimal TotalValue = Alleles.Where(x => x.OnBag).Sum(x => x.Value);
 
-        var stepWeight = Mathf.Lerp(0, Darwin.MaxWeight, TotalWeight);
-        if(stepWeight > 1 )
+        var stepWeight = TotalWeight / Darwin.MaxWeight; // Mathf.Lerp(0, Darwin.MaxWeight, TotalWeight / Darwin.MaxWeight);
+
+        if (stepWeight > 1 || TotalWeight == 0)
         {
             return 0;
         }
@@ -30,11 +72,19 @@ public class Chromosome
         }
     }
 
+    public override string ToString()
+    {
+        var asString = "Chromossome fitness: " + Fitness() + "\n";
+        foreach(var allele in Alleles)
+        {
+            asString += allele.ToString() + "\n";
+        }
+        return asString;
+    }
+
     public int CompareTo(Chromosome chromossome)
     {
-        var myFitness = Fitness();
-        var otherFitness = chromossome.Fitness();
-        return myFitness.CompareTo(otherFitness);
+        return Fitness().CompareTo(chromossome.Fitness());
     }
 
 }

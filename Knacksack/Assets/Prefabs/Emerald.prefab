@@ -53,11 +53,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5490372218426205791, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
       propertyPath: m_Name
-      value: Emerald Variant
+      value: Emerald
       objectReference: {fileID: 0}
+    - target: {fileID: 6851338858339615995, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1780423
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851338858339615995, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: m_Size.y
+      value: 0.86325073
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851338858339615995, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.00874418
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851338858339615995, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.00874424
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237690238380362169, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c5eaba73bfb963444bc32110053b0a8c, type: 3}
     - target: {fileID: 8441728669820591550, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
       propertyPath: ID
-      value: 2
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441728669820591550, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: Value
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441728669820591550, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: Weight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8441728669820591550, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
       propertyPath: mySprite

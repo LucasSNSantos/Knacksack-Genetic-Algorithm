@@ -53,15 +53,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219265854579374210, guid: e8df30e3e33132044b734d0afe332398, type: 3}
       propertyPath: ID
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219265854579374210, guid: e8df30e3e33132044b734d0afe332398, type: 3}
+      propertyPath: Value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219265854579374210, guid: e8df30e3e33132044b734d0afe332398, type: 3}
+      propertyPath: Weight
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5219265854579374210, guid: e8df30e3e33132044b734d0afe332398, type: 3}
       propertyPath: mySprite
       value: 
       objectReference: {fileID: 21300000, guid: d9f3271d60acf0b44a53b613cdcd72f7, type: 3}
+    - target: {fileID: 5700328404683402373, guid: e8df30e3e33132044b734d0afe332398, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d9f3271d60acf0b44a53b613cdcd72f7, type: 3}
     - target: {fileID: 8176352925716824931, guid: e8df30e3e33132044b734d0afe332398, type: 3}
       propertyPath: m_Name
-      value: Paper Variant
+      value: Paper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8df30e3e33132044b734d0afe332398, type: 3}
