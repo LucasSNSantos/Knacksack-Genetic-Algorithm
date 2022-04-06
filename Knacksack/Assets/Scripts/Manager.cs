@@ -38,7 +38,7 @@ public class Manager : MonoBehaviour
     private (Chromosome father, Chromosome mother) Participants;
     private Chromosome Descendent;
 
-    private void Awake()
+    private void Start()
     {
         MyD = new Darwin(Items.Select(x => x.GetVanillaAllele()).ToList(), Generations);
 
@@ -58,34 +58,6 @@ public class Manager : MonoBehaviour
         }
 
         UI.GeracoesText.text = "GERACAO 1" + "/" + MyD.MaxGenerations + " ESTADO INCIAL";
-    }
-
-    void Start()
-    {
-        //MyD.OnCrossing = (c) =>
-        //{
-        //    print("Resultado do cruzamento: " + c.ToString());
-        //};
-
-        //MyD.OnKilled = (c) =>
-        //{
-        //    print("Individuo mandado ao gulag: " + c.ToString());
-        //};
-
-        //MyD.OnMutated = (c) =>
-        //{
-        //    print("Individuo mutado: " + c.ToString());
-        //};
-
-        //MyD.OnTournament = (f, m) =>
-        //{
-        //    print("Torneio!");
-        //    print(f.ToString());
-        //    print(m.ToString());
-        //    print("Fim torneio");
-        //};
-
-        //StartCoroutine(GeneticCoroutine());
     }
 
     public void EvolveOneGeneration()
@@ -140,6 +112,7 @@ public class Manager : MonoBehaviour
         {
             var sack = Sacks.ElementAt(count);
             sack.SetChromossome(chromossome);
+            print(chromossome.ToString());
             count++;
         }
 
@@ -169,7 +142,6 @@ public class Manager : MonoBehaviour
         var swapper = Sacks.FirstOrDefault(x => x.ID == weak.ID);
 
         swapper.ResetStatus();
-        //swapper.SetChromossome(Descendent);
 
         UI.RemoveDescedent();
     }
@@ -191,7 +163,6 @@ public class Manager : MonoBehaviour
 
         sack.SetMutation(false);
 
-        //sack.SetChromossome(mutate);
         sack.ResetStatus();
     }
 
@@ -205,17 +176,6 @@ public class Manager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             IsAutoOn = !IsAutoOn;
-
-            //if (IsAutoOn)
-            //{
-            //    CurrentCoroutine = StartCoroutine(StepCoroutine());
-            //} else
-            //{
-            //    if (CurrentCoroutine != null)
-            //    {
-            //        StopCoroutine(CurrentCoroutine);
-            //    }
-            //}
         }
 
         if (IsAutoOn)
@@ -255,17 +215,6 @@ public class Manager : MonoBehaviour
         else
         {
             state = (AGState)((int)state + 1);
-        }
-    }
-
-    public IEnumerator GeneticCoroutine()
-    {
-        var counter = 0;
-        foreach(var chromosome in MyD.Genetic(Generations))
-        {
-            print("GERACAO: " + counter++);
-            print("Gerado chromossome: " + chromosome.ToString());
-            yield return new WaitForSeconds(0.5f);
         }
     }
 }

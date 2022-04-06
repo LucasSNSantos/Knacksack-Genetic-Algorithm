@@ -64,7 +64,8 @@ public class Sack : MonoBehaviour
     {
         CurrentChromossome = chromossome;
         ID = CurrentChromossome.ID;
-        //ResetStatus();
+        Debug.Log(ID);
+        Debug.Log(CurrentChromossome.ToString());
 
         Text.text = $"Weight: {CurrentChromossome.TotalWeight()}\nValue: {CurrentChromossome.TotalValue()}\nFitness: {string.Format("{0:0.00}", CurrentChromossome.Fitness())}";
     }

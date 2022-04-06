@@ -13,7 +13,7 @@ public class Darwin
 {
     public Chromosome[] Chromosomes;
     public static ESelection Selection;
-	public readonly static float MaxWeight = 30f;
+	public readonly static float MaxWeight = 15f;
     public const int Population = 10;
 	public float MutationTax = 0.02f;
     public int CurrentGeneration;
@@ -21,11 +21,6 @@ public class Darwin
 	public List<Allele> ObjectList { get; private set; }
 	private static Random random;
     public Chromosome HasToMutate;
-
-	public UnityAction<Chromosome, Chromosome> OnTournament;
-	public UnityAction<Chromosome> OnCrossing;
-	public UnityAction<Chromosome> OnKilled;
-	public UnityAction<Chromosome> OnMutated;
 
     public Darwin(List<Allele> myObjects, int maxGenerations = 30)
     {
@@ -49,12 +44,8 @@ public class Darwin
             // torneio
             var (father, mother) = Tournament();
 
-            OnTournament?.Invoke(father, mother);
-
             // crossing
             var descendent = Crossing(father, mother);
-
-            OnCrossing?.Invoke(descendent);
 
             SwapDescendent(descendent);
 
@@ -77,7 +68,6 @@ public class Darwin
         if (i % 7 == 0)
         {
             Mutate(HasToMutate);
-            OnMutated?.Invoke(HasToMutate);
         }
     }
 
@@ -87,7 +77,6 @@ public class Darwin
         {
             if (Chromosomes[j].Executed)
             {
-                OnKilled?.Invoke(Chromosomes[j]);
                 Chromosomes[j] = descendent;
             }
         }
@@ -166,19 +155,19 @@ public class Darwin
 		var index1 = random.Next(0, Population);
 		var index2 = random.Next(0, Population);
 
-		while(!Chromosomes[index1].IsChoosen && !Chromosomes[index1].Executed)
+		while(Chromosomes[index1].IsChoosen || Chromosomes[index1].Executed)
         {
 			index1 = random.Next(0, Population);
 		}
 
-		while (index1 == index2 && !Chromosomes[index2].IsChoosen && !Chromosomes[index2].Executed)
+		while (index1 == index2 || Chromosomes[index2].IsChoosen || Chromosomes[index2].Executed)
 		{
 			index2 = random.Next(0, Population);
 		}
 
 		var betterSurvives = Chromosomes[index1].CompareTo(Chromosomes[index2]);
 
-		if (betterSurvives > 1)
+		if (betterSurvives > 0)
 		{
 			Chromosomes[index1].IsChoosen = true;
 			return Chromosomes[index1];

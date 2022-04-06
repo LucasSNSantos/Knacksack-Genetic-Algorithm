@@ -60,7 +60,8 @@ public class Chromosome
         float TotalWeight = Alleles.Where(x => x.OnBag).Sum(x => x.Weight);
         decimal TotalValue = Alleles.Where(x => x.OnBag).Sum(x => x.Value);
 
-        var stepWeight = TotalWeight / Darwin.MaxWeight; // Mathf.Lerp(0, Darwin.MaxWeight, TotalWeight / Darwin.MaxWeight);
+        // Mathf.Lerp(0, Darwin.MaxWeight, TotalWeight / Darwin.MaxWeight);
+        var stepWeight = TotalWeight / Darwin.MaxWeight; 
 
         if (stepWeight > 1 || TotalWeight == 0)
         {
@@ -68,7 +69,7 @@ public class Chromosome
         }
         else
         {
-            return (float) TotalValue / stepWeight;
+            return (float) TotalValue;
         }
     }
 

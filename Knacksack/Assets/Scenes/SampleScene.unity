@@ -2047,7 +2047,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PESO MAX. 30kg
+  m_text: PESO MAX. 15kg
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2550,7 +2550,7 @@ MonoBehaviour:
   - {fileID: 107277644}
   - {fileID: 622638720}
   UI: {fileID: 1281345553}
-  Generations: 100
+  Generations: 10000
   StepTime: 0.01
 --- !u!1 &631847735
 GameObject:
