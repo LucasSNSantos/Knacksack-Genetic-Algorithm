@@ -27,6 +27,20 @@ public class Chromosome
 
         this.myDarwin = myDarwin;
         Alleles = new Allele[Size];
+
+        Initialize();
+    }
+
+    public Chromosome Initialize()
+    {
+        var objectList = myDarwin.ObjectList;
+        
+        for (int i = 0; i < Alleles.Length; i++)
+        {
+            Alleles[i] = objectList.ElementAt(i).Clone();
+        }
+
+        return this;
     }
 
     public Chromosome Randomize()

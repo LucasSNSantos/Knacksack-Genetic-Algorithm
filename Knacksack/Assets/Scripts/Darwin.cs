@@ -103,12 +103,12 @@ public class Darwin
 		
 		for(int index = 0; index < son.Size; index++)
         {
-			if (index >= offSet)
+			if (index < offSet)
             {
-				son.Alleles[index] = father.Alleles[index];
+				son.Alleles[index].OnBag = father.Alleles[son.Size - index - 1].OnBag;
             } else
             {
-				son.Alleles[index] = mother.Alleles[index];
+				son.Alleles[index].OnBag = mother.Alleles[index - offSet].OnBag;
             }
 		}
 
