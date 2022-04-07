@@ -2550,7 +2550,7 @@ MonoBehaviour:
   - {fileID: 107277644}
   - {fileID: 622638720}
   UI: {fileID: 1281345553}
-  Generations: 10000
+  Generations: 100
   StepTime: 0.01
 --- !u!1 &631847735
 GameObject:

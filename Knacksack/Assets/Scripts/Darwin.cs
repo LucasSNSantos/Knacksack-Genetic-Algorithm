@@ -20,7 +20,7 @@ public class Darwin
     public int MaxGenerations;
 	public List<Allele> ObjectList { get; private set; }
 	private static Random random;
-    public Chromosome HasToMutate;
+    public List<Chromosome> HasToMutate;
 
     public Darwin(List<Allele> myObjects, int maxGenerations = 30)
     {
@@ -60,7 +60,8 @@ public class Darwin
 
     public void ChooseWhoMutates()
     {
-        HasToMutate = Chromosomes.OrderBy(x => random.Next()).First(); 
+        var randonNumber = random.Next(1, Chromosomes.Count());
+        HasToMutate = Chromosomes.OrderBy(x => random.Next()).ToList().Take(randonNumber).ToList(); 
     }
 
     public void FullMutation(int i)
@@ -90,10 +91,15 @@ public class Darwin
 		}
     }
 
-	private void Mutate(Chromosome chromosome)
+	private void Mutate(List<Chromosome> chromosomes)
     {
-		var first = chromosome.Alleles.OrderBy(x => random.Next()).First();
-		first.OnBag = !first.OnBag;
+		
+        foreach(var item in chromosomes)
+        {
+            var first = item.Alleles.OrderBy(x => random.Next()).First();
+            first.OnBag = !first.OnBag;
+        }
+		
     }
 
 	public Chromosome Crossing(Chromosome father, Chromosome mother)

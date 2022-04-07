@@ -150,7 +150,7 @@ public class Manager : MonoBehaviour
     {
         var mutate = MyD.HasToMutate;
 
-        var sack = Sacks.FirstOrDefault(x => x.ID == mutate.ID);
+        var sack = Sacks.FirstOrDefault(x => x.ID == mutate.FirstOrDefault().ID);
 
         sack.SetMutation(true);
     }
@@ -159,7 +159,7 @@ public class Manager : MonoBehaviour
     {
         var mutate = MyD.HasToMutate;
 
-        var sack = Sacks.FirstOrDefault(x => x.ID == mutate.ID);
+        var sack = Sacks.FirstOrDefault(x => x.ID == mutate.FirstOrDefault().ID);
 
         sack.SetMutation(false);
 
