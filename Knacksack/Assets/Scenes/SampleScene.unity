@@ -303,6 +303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leitinho
       objectReference: {fileID: 0}
+    - target: {fileID: 2450785325937209128, guid: 312fe86e3e910e44583109cc02b8eba8, type: 3}
+      propertyPath: Name
+      value: Leite
+      objectReference: {fileID: 0}
     - target: {fileID: 6662210646098877210, guid: 312fe86e3e910e44583109cc02b8eba8, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -2840,6 +2844,10 @@ PrefabInstance:
     - target: {fileID: 6851338858339615995, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
       propertyPath: m_Offset.y
       value: 0.08844519
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441728669820591550, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
+      propertyPath: Name
+      value: Colar de ouro
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5365cba70611f1340a2cc293ef6874ce, type: 3}
@@ -6167,6 +6175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Emerald
       objectReference: {fileID: 0}
+    - target: {fileID: 4317834659520292906, guid: 3c146cb35eb51f048a2a7a440b4cde64, type: 3}
+      propertyPath: Name
+      value: Emerald
+      objectReference: {fileID: 0}
     - target: {fileID: 4912508238242636070, guid: 3c146cb35eb51f048a2a7a440b4cde64, type: 3}
       propertyPath: m_Mass
       value: 5
@@ -6495,6 +6507,10 @@ PrefabInstance:
     - target: {fileID: 2683059716135013206, guid: 14838b39ac6f4c44fba0f0835c4edbcd, type: 3}
       propertyPath: m_GravityScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556290054188237402, guid: 14838b39ac6f4c44fba0f0835c4edbcd, type: 3}
+      propertyPath: Name
+      value: Great axe
       objectReference: {fileID: 0}
     - target: {fileID: 7199615467861162427, guid: 14838b39ac6f4c44fba0f0835c4edbcd, type: 3}
       propertyPath: m_Name
@@ -9866,6 +9882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book
       objectReference: {fileID: 0}
+    - target: {fileID: 7876192971761285203, guid: 1e4eb4611dfc7d7478a4449b8fa5c4df, type: 3}
+      propertyPath: Name
+      value: Book
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e4eb4611dfc7d7478a4449b8fa5c4df, type: 3}
 --- !u!1 &1975637514
@@ -10164,6 +10184,10 @@ PrefabInstance:
     - target: {fileID: 6030501947996399335, guid: e4b37e9f7caa0b848944832cd9ed9b4f, type: 3}
       propertyPath: m_Offset.y
       value: 0.034780502
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755972435119620002, guid: e4b37e9f7caa0b848944832cd9ed9b4f, type: 3}
+      propertyPath: Name
+      value: Papel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4b37e9f7caa0b848944832cd9ed9b4f, type: 3}
